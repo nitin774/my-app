@@ -6,27 +6,24 @@ pipeline {
     }
 
     stages {
-        stage('Install') {
+        stage('install') {
             steps {
                 bat 'npm install'
             }
         }
-
         stage('Test') {
             steps {
                 echo 'Running Tests...'
             }
         }
-
         stage('Build') {
             steps {
                 bat 'npm run build'
             }
         }
-
-        stage('Deploy') {
+        stage('deploy') {
             steps {
-                bat "npx vercel --prod --yes --token=$VERCEL_TOKEN"
+                bat "npx vercel --prod --yes --token=%VERCEL_TOKEN%"
             }
         }
     }
